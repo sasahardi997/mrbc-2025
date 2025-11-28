@@ -4,8 +4,8 @@ import com.productdock.rbc2024.dto.BookDetailsDto;
 import com.productdock.rbc2024.dto.BookDto;
 import com.productdock.rbc2024.dto.CommentDto;
 import com.productdock.rbc2024.dto.EditBookDetailsDto;
-import com.productdock.rbc2024.model.Book;
-import com.productdock.rbc2024.model.Comment;
+import com.productdock.rbc2024.domain.Book;
+import com.productdock.rbc2024.domain.Comment;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -30,12 +30,6 @@ public class BookMapper {
             book.getAuthor(),
             book.getNumberOfPages()
         );
-    }
-
-    private List<CommentDto> convertCommentToDto(List<Comment> comments) {
-        return comments.stream()
-                .map(BookMapper::convertCommentToCommentDto)
-                .collect(Collectors.toList());
     }
 
     private static CommentDto convertCommentToCommentDto(Comment comment) {

@@ -1,9 +1,9 @@
-package com.productdock.rbc2024.unit.mapper.commentmapper;
+package com.productdock.rbc2024.mapper;
 
 import com.productdock.rbc2024.dto.BookDetailsDto;
 import com.productdock.rbc2024.dto.CommentDto;
-import com.productdock.rbc2024.model.Book;
-import com.productdock.rbc2024.model.Comment;
+import com.productdock.rbc2024.domain.Book;
+import com.productdock.rbc2024.domain.Comment;
 
 class CommentMapperSetUp {
 

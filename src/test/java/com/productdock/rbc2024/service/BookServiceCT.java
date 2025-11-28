@@ -1,16 +1,17 @@
-package com.productdock.rbc2024.component.service.bookservice;
+package com.productdock.rbc2024.service;
 
-import com.productdock.rbc2024.component.ComponentTestBase;
+import static com.productdock.rbc2024.service.BookServiceSetUp.BOOK_ID;
+import static com.productdock.rbc2024.service.BookServiceSetUp.createBookWithId;
+import static com.productdock.rbc2024.service.BookServiceSetUp.createExpectedBookWithIdDto;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import com.productdock.rbc2024.SpringContextTestBase;
 import com.productdock.rbc2024.repository.BookRepository;
-import com.productdock.rbc2024.service.BookService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static com.productdock.rbc2024.component.service.bookservice.BookServiceSetUp.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-class BookServiceCT extends ComponentTestBase {
+class BookServiceCT extends SpringContextTestBase {
 
     @Autowired
     private BookService bookService;
@@ -25,12 +26,12 @@ class BookServiceCT extends ComponentTestBase {
 
     @Test
     void getById() {
-        var book = createBook();
+        var book = createBookWithId();
         bookRepository.save(book);
 
         var actual = bookService.getById(BOOK_ID);
 
-        var expectedBookDto = createExpectedBookDto();
+        var expectedBookDto = createExpectedBookWithIdDto();
         assertEquals(expectedBookDto, actual);
     }
 

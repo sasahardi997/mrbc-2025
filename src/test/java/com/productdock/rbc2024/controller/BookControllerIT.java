@@ -1,4 +1,4 @@
-package com.productdock.rbc2024.integration.controller.bookcontroller;
+package com.productdock.rbc2024.controller;
 
 import com.productdock.rbc2024.dto.BookDetailsDto;
 import com.productdock.rbc2024.SpringContextTestBase;
@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
-import static com.productdock.rbc2024.integration.controller.bookcontroller.BookControllerSetUp.*;
+import static com.productdock.rbc2024.controller.BookControllerSetUp.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

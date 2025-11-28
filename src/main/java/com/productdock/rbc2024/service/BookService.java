@@ -6,7 +6,7 @@ import com.productdock.rbc2024.dto.EditBookDetailsDto;
 import com.productdock.rbc2024.exception.BookTitleAlreadyExistsException;
 import com.productdock.rbc2024.exception.EntityNotFoundException;
 import com.productdock.rbc2024.mapper.BookMapper;
-import com.productdock.rbc2024.model.Book;
+import com.productdock.rbc2024.domain.Book;
 import com.productdock.rbc2024.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

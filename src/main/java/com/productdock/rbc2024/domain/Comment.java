@@ -1,4 +1,4 @@
-package com.productdock.rbc2024.model;
+package com.productdock.rbc2024.domain;
 
 import jakarta.persistence.*;
 import lombok.*;

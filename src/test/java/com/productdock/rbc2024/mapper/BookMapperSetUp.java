@@ -1,7 +1,7 @@
-package com.productdock.rbc2024.unit.mapper.bookmapper;
+package com.productdock.rbc2024.mapper;
 
 import com.productdock.rbc2024.dto.BookDetailsDto;
-import com.productdock.rbc2024.model.Book;
+import com.productdock.rbc2024.domain.Book;
 
 class BookMapperSetUp {
 

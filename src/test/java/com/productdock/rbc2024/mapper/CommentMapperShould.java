@@ -1,14 +1,12 @@
-package com.productdock.rbc2024.unit.mapper.commentmapper;
+package com.productdock.rbc2024.mapper;
 
-import com.productdock.rbc2024.mapper.BookMapper;
-import com.productdock.rbc2024.mapper.CommentMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static com.productdock.rbc2024.unit.mapper.commentmapper.CommentMapperSetUp.*;
+import static com.productdock.rbc2024.mapper.CommentMapperSetUp.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 

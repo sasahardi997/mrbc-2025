@@ -1,9 +1,8 @@
-package com.productdock.rbc2024.unit.service.bookservice;
+package com.productdock.rbc2024.service;
 
 import com.productdock.rbc2024.exception.EntityNotFoundException;
 import com.productdock.rbc2024.mapper.BookMapper;
 import com.productdock.rbc2024.repository.BookRepository;
-import com.productdock.rbc2024.service.BookService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -12,7 +11,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
 
-import static com.productdock.rbc2024.unit.service.bookservice.BookServiceSetUp.*;
+import static com.productdock.rbc2024.service.BookServiceSetUp.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 

@@ -1,6 +1,6 @@
 package com.productdock.rbc2024.repository;
 
-import com.productdock.rbc2024.model.Book;
+import com.productdock.rbc2024.domain.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
