@@ -3,6 +3,7 @@ package com.productdock.rbc2024.controller;
 import com.productdock.rbc2024.dto.BookDetailsDto;
 import com.productdock.rbc2024.SpringContextTestBase;
 import com.productdock.rbc2024.repository.BookRepository;
+import com.productdock.rbc2024.repository.CommentRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,18 +21,22 @@ class BookControllerIT extends SpringContextTestBase {
     @Autowired
     private BookRepository bookRepository;
 
+    @Autowired
+    private CommentRepository commentRepository;
+
     @BeforeEach
     void setUp() {
+        commentRepository.deleteAll();
         bookRepository.deleteAll();
     }
 
     @Test
     void getBookInfo() {
-        var books = books();
-        bookRepository.saveAll(books);
+        var savedBooks = bookRepository.saveAll(books());
+        var book2Id = savedBooks.get(1).getId();
 
         webClient.get()
-            .uri(API_BASE_URL + "/" + BOOK_2_ID)
+            .uri(API_BASE_URL + "/" + book2Id)
             .exchange()
             .expectStatus().isOk()
             .expectBody(BookDetailsDto.class)
@@ -39,8 +44,12 @@ class BookControllerIT extends SpringContextTestBase {
                 var responseBody = response.getResponseBody();
 
                 assertThat(responseBody).isNotNull();
-                var expectedCsvData = expectedBookDetailsDto();
-                assertEquals(expectedCsvData, responseBody);
+
+                var expectedData = expectedBookDetailsDto();
+                assertThat(responseBody)
+                    .usingRecursiveComparison()
+                    .ignoringFields("id")
+                    .isEqualTo(expectedData);
             });
     }
 
@@ -75,7 +84,7 @@ class BookControllerIT extends SpringContextTestBase {
     @Test
     void deleteBookShouldReturnNoContent() {
         var savedBooks = bookRepository.saveAll(books());
-        var book1Id = savedBooks.get(0).getId();
+        var book1Id = savedBooks.getFirst().getId();
 
         webClient.delete()
             .uri(API_BASE_URL + "/" + book1Id)

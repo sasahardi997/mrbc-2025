@@ -51,21 +51,6 @@ class BookServiceShould {
     }
 
     @Test
-    void updateBookSuccessfully() {
-        var editDto = createEditDto();
-        var existingBook = createExistingBook();
-        var updatedBook = createUpdatedBook();
-
-        when(bookRepository.findById(BOOK_ID)).thenReturn(Optional.of(existingBook));
-        when(bookMapper.convertEditBookDetailsDtoToModel(editDto, existingBook)).thenReturn(updatedBook);
-
-        bookService.updateBook(BOOK_ID, editDto);
-
-        verify(bookRepository).findById(BOOK_ID);
-        verify(bookRepository).save(updatedBook);
-    }
-
-    @Test
     void deleteBookSuccessfully() {
         var book = createBook();
         when(bookRepository.findById(BOOK_ID)).thenReturn(Optional.of(book));

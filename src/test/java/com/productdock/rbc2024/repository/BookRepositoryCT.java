@@ -17,8 +17,12 @@ class BookRepositoryCT extends SpringContextTestBase {
     @Autowired
     private BookRepository bookRepository;
 
+    @Autowired
+    private CommentRepository commentRepository;
+
     @BeforeEach
     void setUp() {
+        commentRepository.deleteAll();
         bookRepository.deleteAll();
     }
 
