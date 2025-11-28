@@ -16,19 +16,11 @@ class CommentMapperSetUp {
     private static final int BOOK_NUMBER_OF_PAGES = 120;
 
     static CommentDto commentDto() {
-        return CommentDto.builder()
-                .id(COMMENT_ID)
-                .content(COMMENT_CONTENT)
-                .build();
+        return new CommentDto(COMMENT_ID, COMMENT_CONTENT);
     }
 
     static BookDetailsDto bookDetailsDto() {
-        return BookDetailsDto.builder()
-                .id(BOOK_ID)
-                .title(BOOK_TITLE)
-                .author(BOOK_AUTHOR)
-                .numberOfPages(BOOK_NUMBER_OF_PAGES)
-                .build();
+        return new BookDetailsDto(BOOK_ID, BOOK_TITLE, BOOK_AUTHOR, BOOK_NUMBER_OF_PAGES);
     }
 
     static Book book() {
@@ -59,10 +51,7 @@ class CommentMapperSetUp {
     }
 
     static CommentDto expectedCommentDto() {
-        return CommentDto.builder()
-                .id(COMMENT_ID)
-                .content(COMMENT_CONTENT)
-                .build();
+        return new CommentDto(COMMENT_ID, COMMENT_CONTENT);
     }
 
 }

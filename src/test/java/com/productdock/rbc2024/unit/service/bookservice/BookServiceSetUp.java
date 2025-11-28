@@ -20,21 +20,11 @@ class BookServiceSetUp {
     }
 
     static BookDto createBookDto() {
-        return BookDto.builder()
-                .id(BOOK_ID)
-                .title(BOOK_TITLE)
-                .author(BOOK_AUTHOR)
-                .numberOfPages(BOOK_NUMBER_OF_PAGES)
-                .build();
+        return new BookDto(BOOK_ID, BOOK_TITLE ,BOOK_AUTHOR, BOOK_NUMBER_OF_PAGES);
     }
 
     static BookDto createExpectedBookDto() {
-        return BookDto.builder()
-                .id(BOOK_ID)
-                .title(BOOK_TITLE)
-                .author(BOOK_AUTHOR)
-                .numberOfPages(BOOK_NUMBER_OF_PAGES)
-                .build();
+        return new BookDto(BOOK_ID, BOOK_TITLE, BOOK_AUTHOR, BOOK_NUMBER_OF_PAGES);
     }
 
 }

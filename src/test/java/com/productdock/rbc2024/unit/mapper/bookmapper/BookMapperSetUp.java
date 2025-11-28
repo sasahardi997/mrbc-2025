@@ -20,12 +20,7 @@ class BookMapperSetUp {
     }
 
     static BookDetailsDto createExpectedBookDetailsDto() {
-        return BookDetailsDto.builder()
-                .id(BOOK_ID)
-                .title(BOOK_TITLE)
-                .author(BOOK_AUTHOR)
-                .numberOfPages(BOOK_NUMBER_OF_PAGES)
-                .build();
+        return new BookDetailsDto(BOOK_ID, BOOK_TITLE, BOOK_AUTHOR, BOOK_NUMBER_OF_PAGES);
     }
 
 }

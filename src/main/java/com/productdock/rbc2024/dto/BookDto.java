@@ -1,26 +1,26 @@
 package com.productdock.rbc2024.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import java.util.List;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
-@Builder
-public class BookDto {
+public record BookDto(
 
-    private Long id;
+    Long id,
 
-    private String title;
+    String title,
 
-    private String author;
+    String author,
 
-    private Integer numberOfPages;
+    Integer numberOfPages,
 
-    private List<CommentDto> comments;
+    List<CommentDto> comments
 
+) {
+
+    public BookDto(Long id) {
+        this(id, null, null, null, null);
+    }
+
+    public BookDto(Long id, String title, String author, Integer numberOfPages) {
+        this(id, title, author, numberOfPages, null);
+    }
 }

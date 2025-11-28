@@ -33,12 +33,7 @@ class BookControllerSetUp {
     }
 
     static BookDetailsDto expectedBookDetailsDto() {
-        return BookDetailsDto.builder()
-                .id(BOOK_2_ID)
-                .title(BOOK_2_TITLE)
-                .author(BOOK_2_AUTHOR)
-                .numberOfPages(BOOK_2_NUMBER_OF_PAGES)
-                .build();
+        return new BookDetailsDto(BOOK_2_ID, BOOK_2_TITLE, BOOK_2_AUTHOR, BOOK_2_NUMBER_OF_PAGES);
     }
 
 }

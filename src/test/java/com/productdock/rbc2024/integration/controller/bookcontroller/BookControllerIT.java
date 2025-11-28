@@ -1,7 +1,7 @@
 package com.productdock.rbc2024.integration.controller.bookcontroller;
 
 import com.productdock.rbc2024.dto.BookDetailsDto;
-import com.productdock.rbc2024.integration.BaseIntegrationTest;
+import com.productdock.rbc2024.SpringContextTestBase;
 import com.productdock.rbc2024.repository.BookRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,7 +12,7 @@ import static com.productdock.rbc2024.integration.controller.bookcontroller.Book
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class BookControllerIT extends BaseIntegrationTest {
+class BookControllerIT extends SpringContextTestBase {
 
     private static final String BASE_URL = "/api/books";
 

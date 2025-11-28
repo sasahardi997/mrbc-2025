@@ -2,12 +2,12 @@ spring:
   application:
     name: rbc2024
   datasource:
-    url: jdbc:mysql://localhost:3306/library
+    url: jdbc:postgresql://localhost:5432/library
     username: admin
     password: admin
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: org.postgresql.Driver
   jpa:
-    database-platform: org.hibernate.dialect.MySQLDialect
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
       show-sql: true

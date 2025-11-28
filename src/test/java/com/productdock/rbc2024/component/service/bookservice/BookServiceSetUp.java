@@ -14,9 +14,7 @@ class BookServiceSetUp {
     }
 
     static BookDto createExpectedBookDto() {
-        return BookDto.builder()
-                .id(BOOK_ID)
-                .build();
+        return new BookDto(BOOK_ID);
     }
 
 }

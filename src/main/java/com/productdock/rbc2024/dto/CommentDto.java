@@ -1,18 +1,9 @@
 package com.productdock.rbc2024.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+public record CommentDto(
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
-@Builder
-public class CommentDto {
+    Long id,
 
-    private Long id;
+    String content
 
-    private String content;
-
-}
+) {}

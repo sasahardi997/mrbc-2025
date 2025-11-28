@@ -58,7 +58,7 @@ public class BookService {
     }
 
     public Long createBook(BookDetailsDto bookDetailsDto) {
-        var title = bookDetailsDto.getTitle();
+        var title = bookDetailsDto.title();
         if (bookRepository.existsByTitle(title)) {
             throw new BookTitleAlreadyExistsException("Book with title: " + title + " already exists.");
         }

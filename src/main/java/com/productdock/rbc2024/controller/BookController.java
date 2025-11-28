@@ -2,6 +2,7 @@ package com.productdock.rbc2024.controller;
 
 import com.productdock.rbc2024.dto.BookDetailsDto;
 import com.productdock.rbc2024.service.BookService;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -20,7 +21,7 @@ public class BookController {
     private final BookService bookService;
 
     @GetMapping
-    public ResponseEntity<?> getAllBooks(){
+    public ResponseEntity<List<BookDetailsDto>> getAllBooks(){
         var books = bookService.getAll();
         return new ResponseEntity<>(books, HttpStatus.OK);
     }

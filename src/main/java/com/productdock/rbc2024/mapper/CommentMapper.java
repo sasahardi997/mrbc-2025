@@ -14,17 +14,14 @@ public class CommentMapper {
 
     public Comment convertCommentDtoToModel(CommentDto commentDto, BookDetailsDto bookDto) {
         return Comment.builder()
-                .id(commentDto.getId())
-                .content(commentDto.getContent())
+                .id(commentDto.id())
+                .content(commentDto.content())
                 .book(bookMapper.convertBookDetailsDtoToModel(bookDto))
                 .build();
     }
 
     public CommentDto convertModelToCommentDto(Comment comment) {
-        return CommentDto.builder()
-                .id(comment.getId())
-                .content(comment.getContent())
-                .build();
+        return new CommentDto(comment.getId(), comment.getContent());
     }
 
 }
