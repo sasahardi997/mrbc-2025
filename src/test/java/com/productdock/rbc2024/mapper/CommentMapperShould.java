@@ -1,30 +1,21 @@
 package com.productdock.rbc2024.mapper;
 
+import com.productdock.rbc2024.SpringContextTestBase;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import static com.productdock.rbc2024.mapper.CommentMapperSetUp.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
 
-@ExtendWith(MockitoExtension.class)
-class CommentMapperShould {
+class CommentMapperShould extends SpringContextTestBase {
 
-    @Mock
-    private BookMapper bookMapper;
-
-    @InjectMocks
+    @Autowired
     private CommentMapper commentMapper;
 
     @Test
     void convertCommentDtoToModel() {
         var commentDto = commentDto();
         var bookDetailsDto = bookDetailsDto();
-        var book = book();
-        when(bookMapper.convertBookDetailsDtoToModel(bookDetailsDto)).thenReturn(book);
 
         var result = commentMapper.convertCommentDtoToModel(commentDto, bookDetailsDto);
 
@@ -41,5 +32,4 @@ class CommentMapperShould {
         var expectedCommentDto = expectedCommentDto();
         assertEquals(expectedCommentDto, result);
     }
-
 }

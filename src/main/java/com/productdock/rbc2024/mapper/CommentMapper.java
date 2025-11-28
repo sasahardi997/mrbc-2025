@@ -1,27 +1,18 @@
 package com.productdock.rbc2024.mapper;
 
+import com.productdock.rbc2024.domain.Comment;
 import com.productdock.rbc2024.dto.BookDetailsDto;
 import com.productdock.rbc2024.dto.CommentDto;
-import com.productdock.rbc2024.domain.Comment;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-@Component
-@RequiredArgsConstructor
-public class CommentMapper {
+@Mapper(componentModel = "spring", uses = BookMapper.class)
+public interface CommentMapper {
 
-    private final BookMapper bookMapper;
+    @Mapping(target = "book", source = "bookDto")
+    @Mapping(target = "id", source = "commentDto.id")
+    @Mapping(target = "content", source = "commentDto.content")
+    Comment convertCommentDtoToModel(CommentDto commentDto, BookDetailsDto bookDto);
 
-    public Comment convertCommentDtoToModel(CommentDto commentDto, BookDetailsDto bookDto) {
-        return Comment.builder()
-                .id(commentDto.id())
-                .content(commentDto.content())
-                .book(bookMapper.convertBookDetailsDtoToModel(bookDto))
-                .build();
-    }
-
-    public CommentDto convertModelToCommentDto(Comment comment) {
-        return new CommentDto(comment.getId(), comment.getContent());
-    }
-
+    CommentDto convertModelToCommentDto(Comment comment);
 }

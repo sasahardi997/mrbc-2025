@@ -1,49 +1,28 @@
 package com.productdock.rbc2024.mapper;
 
+import com.productdock.rbc2024.domain.Book;
 import com.productdock.rbc2024.dto.BookDetailsDto;
 import com.productdock.rbc2024.dto.BookDto;
-import com.productdock.rbc2024.dto.CommentDto;
 import com.productdock.rbc2024.dto.EditBookDetailsDto;
-import com.productdock.rbc2024.domain.Book;
-import com.productdock.rbc2024.domain.Comment;
-import org.springframework.stereotype.Component;
+import org.mapstruct.*;
 
-import java.util.List;
-import java.util.stream.Collectors;
+@Mapper(componentModel = "spring")
+public interface BookMapper {
 
-@Component
-public class BookMapper {
+    BookDetailsDto convertModelToBookDetailsDto(Book book);
 
-    public BookDetailsDto convertModelToBookDetailsDto(Book book) {
-        return new BookDetailsDto(
-            book.getId(),
-            book.getTitle(),
-            book.getAuthor(),
-            book.getNumberOfPages()
-        );
-    }
+    @Mapping(target = "comments", ignore = true)
+    BookDto convertModelToBookDto(Book book);
 
-    public BookDto convertModelToBookDto(Book book) {
-        return new BookDto(
-            book.getId(),
-            book.getTitle(),
-            book.getAuthor(),
-            book.getNumberOfPages()
-        );
-    }
+    @Mapping(target = "id", source = "bookDetailsDto.id")
+    @Mapping(target = "title", source = "bookDetailsDto.title")
+    @Mapping(target = "author", source = "bookDetailsDto.author")
+    @Mapping(target = "numberOfPages", source = "bookDetailsDto.numberOfPages")
+    Book convertBookDetailsDtoToModel(BookDetailsDto bookDetailsDto);
 
-    private static CommentDto convertCommentToCommentDto(Comment comment) {
-        return new CommentDto(comment.getId(), comment.getContent());
-    }
-
-    public Book convertBookDetailsDtoToModel(BookDetailsDto bookDetailsDto) {
-        return new Book(bookDetailsDto.id(), bookDetailsDto.title(), bookDetailsDto.author(), bookDetailsDto.numberOfPages());
-    }
-
-    public Book convertEditBookDetailsDtoToModel(EditBookDetailsDto dto, Book bookFromDdb){
-        bookFromDdb.setTitle(dto.title());
-        bookFromDdb.setNumberOfPages(dto.numberOfPages());
-        return bookFromDdb;
-    }
-
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "author", ignore = true)
+    @Mapping(target = "title", source = "dto.title")
+    @Mapping(target = "numberOfPages", source = "dto.numberOfPages")
+    Book convertEditBookDetailsDtoToModel(EditBookDetailsDto dto, @MappingTarget Book bookFromDdb);
 }
