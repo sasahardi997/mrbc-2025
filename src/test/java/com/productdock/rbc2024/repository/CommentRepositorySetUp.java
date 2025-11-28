@@ -11,6 +11,9 @@ public class CommentRepositorySetUp {
     static final String FIRST_COMMENT_TEXT = "Great book!";
     static final String SECOND_COMMENT_TEXT = "Very insightful";
 
+    static final int EXPECTED_NUMBER_OF_COMMENTS_FOR_BOOK_2 = 2;;
+    static final int EXPECTED_NUMBER_OF_COMMENTS_FOR_BOOK_1 = 1;
+
     static Book createBook(String title) {
         var book = new Book();
         book.setTitle(title);

@@ -10,11 +10,9 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 
 import static com.productdock.rbc2024.controller.BookControllerSetUp.*;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class BookControllerIT extends SpringContextTestBase {
-
-    private static final String BASE_URL = "/api/books";
 
     @Autowired
     private WebTestClient webClient;
@@ -33,17 +31,66 @@ class BookControllerIT extends SpringContextTestBase {
         bookRepository.saveAll(books);
 
         webClient.get()
-                .uri(BASE_URL + "/" + BOOK_2_ID + "/book-details")
-                .exchange()
-                .expectStatus().isOk()
-                .expectBody(BookDetailsDto.class)
-                .consumeWith(response -> {
-                    var responseBody = response.getResponseBody();
+            .uri(API_BASE_URL + "/" + BOOK_2_ID)
+            .exchange()
+            .expectStatus().isOk()
+            .expectBody(BookDetailsDto.class)
+            .consumeWith(response -> {
+                var responseBody = response.getResponseBody();
 
-                    assertThat(responseBody).isNotNull();
-                    var expectedCsvData = expectedBookDetailsDto();
-                    assertEquals(expectedCsvData, responseBody);
-                });
+                assertThat(responseBody).isNotNull();
+                var expectedCsvData = expectedBookDetailsDto();
+                assertEquals(expectedCsvData, responseBody);
+            });
     }
 
+    @Test
+    void getBookInfoShouldReturnNotFoundWhenBookDoesNotExist() {
+        webClient.get()
+            .uri(API_BASE_URL + "/" + NON_EXISTENT_ID)
+            .exchange()
+            .expectStatus().isNotFound();
+    }
+
+    @Test
+    void createBookShouldReturnCreated() {
+        var bookDetailsDto = createBookDetailsDto();
+
+        webClient.post()
+            .uri(API_BASE_URL)
+            .bodyValue(bookDetailsDto)
+            .exchange()
+            .expectStatus().isCreated()
+            .expectBody(Long.class)
+            .consumeWith(response -> {
+                var bookId = response.getResponseBody();
+                assertThat(bookId).isNotNull();
+
+                var savedBook = bookRepository.findById(bookId);
+                assertTrue(savedBook.isPresent());
+                assertEquals(NEW_BOOK_TITLE, savedBook.get().getTitle());
+            });
+    }
+
+    @Test
+    void deleteBookShouldReturnNoContent() {
+        var savedBooks = bookRepository.saveAll(books());
+        var book1Id = savedBooks.get(0).getId();
+
+        webClient.delete()
+            .uri(API_BASE_URL + "/" + book1Id)
+            .exchange()
+            .expectStatus().isNoContent();
+
+        var deletedBook = bookRepository.findById(BOOK_1_ID);
+        assertFalse(deletedBook.isPresent());
+    }
+
+    @Test
+    void deleteBookShouldReturnNotFoundWhenBookDoesNotExist() {
+        webClient.delete()
+            .uri(API_BASE_URL + "/" + NON_EXISTENT_ID)
+            .exchange()
+            .expectStatus().isNotFound();
+    }
 }

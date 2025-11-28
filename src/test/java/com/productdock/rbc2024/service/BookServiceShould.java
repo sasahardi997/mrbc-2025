@@ -8,7 +8,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
 import java.util.Optional;
 
 import static com.productdock.rbc2024.service.BookServiceSetUp.*;
@@ -44,14 +43,37 @@ class BookServiceShould {
     void catchEntityNotFoundException() {
         when(bookRepository.findById(BOOK_ID)).thenReturn(Optional.empty());
 
-        var exception = assertThrows(EntityNotFoundException.class, () -> {
-            bookService.getById(BOOK_ID);
-        });
+        var exception = assertThrows(EntityNotFoundException.class, () -> bookService.getById(BOOK_ID));
 
-        var expectedMessage = "Book with id: " + BOOK_ID + " does not exist.";
         var actualMessage = exception.getMessage();
-        assertTrue(actualMessage.contains(expectedMessage));
+        assertTrue(actualMessage.contains(EXPECTED_ENTITY_NOT_FOUND_EXCEPTION_MESSAGE));
         verify(bookMapper, never()).convertModelToBookDto(any());
+    }
+
+    @Test
+    void updateBookSuccessfully() {
+        var editDto = createEditDto();
+        var existingBook = createExistingBook();
+        var updatedBook = createUpdatedBook();
+
+        when(bookRepository.findById(BOOK_ID)).thenReturn(Optional.of(existingBook));
+        when(bookMapper.convertEditBookDetailsDtoToModel(editDto, existingBook)).thenReturn(updatedBook);
+
+        bookService.updateBook(BOOK_ID, editDto);
+
+        verify(bookRepository).findById(BOOK_ID);
+        verify(bookRepository).save(updatedBook);
+    }
+
+    @Test
+    void deleteBookSuccessfully() {
+        var book = createBook();
+        when(bookRepository.findById(BOOK_ID)).thenReturn(Optional.of(book));
+
+        bookService.deleteBook(BOOK_ID);
+
+        verify(bookRepository).findById(BOOK_ID);
+        verify(bookRepository).delete(book);
     }
 
 }
