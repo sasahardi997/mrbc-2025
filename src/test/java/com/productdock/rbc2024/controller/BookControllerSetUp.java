@@ -25,6 +25,13 @@ class BookControllerSetUp {
 
     static final String API_BASE_URL = "/api/books";
 
+    static final String BOOK_ONE = "Book One";
+    static final String BOOK_TWO = "Book Two";
+    static final String BOOK_THREE = "Book Three";
+    static final String AUTHOR_ONE = "Author One";
+    static final String AUTHOR_TWO = "Author Two";
+    static final String AUTHOR_THREE = "Author Three";
+
     static List<Book> books() {
         var book1 = book(BOOK_1_ID, BOOK_1_TITLE, BOOK_1_AUTHOR, BOOK_1_NUMBER_OF_PAGES);
         var book2 = book(BOOK_2_ID, BOOK_2_TITLE, BOOK_2_AUTHOR, BOOK_2_NUMBER_OF_PAGES);
