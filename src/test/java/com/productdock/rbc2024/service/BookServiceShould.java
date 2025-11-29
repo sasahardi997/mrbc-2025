@@ -23,11 +23,15 @@ class BookServiceShould {
     @Mock
     private BookMapper bookMapper;
 
+    @Mock
+    private ThirdPartyCallService thirdPartyCallService;
+
     @InjectMocks
     private BookService bookService;
 
     @Test
     void returnBookById() {
+        var expectedBookDto = createExpectedBookDto();
         var book = createBook();
         var bookDto = createBookDto();
         when(bookRepository.findById(BOOK_ID)).thenReturn(Optional.of(book));
@@ -35,7 +39,6 @@ class BookServiceShould {
 
         var result = bookService.getById(BOOK_ID);
 
-        var expectedBookDto = createExpectedBookDto();
         assertEquals(expectedBookDto, result);
     }
 

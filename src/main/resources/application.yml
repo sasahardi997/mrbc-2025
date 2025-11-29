@@ -3,11 +3,11 @@ spring:
     name: mrbc2025
   datasource:
     url: jdbc:postgresql://localhost:5432/library
-    username: admin
-    password: admin
+    username: ${db-username:admin}
+    password: ${db-password:admin}
     driver-class-name: org.postgresql.Driver
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
-      show-sql: true
+      show-sql: false

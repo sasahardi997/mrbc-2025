@@ -1,6 +1,6 @@
 package com.productdock.rbc2024.controller;
 
-import com.productdock.rbc2024.dto.BookDetailsDto;
+import com.productdock.rbc2024.domain.dto.BookDetailsDto;
 import com.productdock.rbc2024.service.BookService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;

@@ -1,6 +1,6 @@
 package com.productdock.rbc2024.controller;
 
-import com.productdock.rbc2024.dto.BookDetailsDto;
+import com.productdock.rbc2024.domain.dto.BookDetailsDto;
 import com.productdock.rbc2024.SpringContextTestBase;
 import com.productdock.rbc2024.repository.BookRepository;
 import com.productdock.rbc2024.repository.CommentRepository;
@@ -17,7 +17,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.Arguments;
 
 class BookControllerIT extends SpringContextTestBase {
 

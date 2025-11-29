@@ -1,9 +1,9 @@
 package com.productdock.rbc2024.mapper;
 
 import com.productdock.rbc2024.domain.Book;
-import com.productdock.rbc2024.dto.BookDetailsDto;
-import com.productdock.rbc2024.dto.BookDto;
-import com.productdock.rbc2024.dto.EditBookDetailsDto;
+import com.productdock.rbc2024.domain.dto.BookDetailsDto;
+import com.productdock.rbc2024.domain.dto.BookDto;
+import com.productdock.rbc2024.domain.dto.EditBookDetailsDto;
 import org.mapstruct.*;
 
 @Mapper(componentModel = "spring")

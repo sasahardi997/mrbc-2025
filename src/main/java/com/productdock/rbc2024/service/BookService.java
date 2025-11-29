@@ -1,12 +1,11 @@
 package com.productdock.rbc2024.service;
 
-import com.productdock.rbc2024.dto.BookDetailsDto;
-import com.productdock.rbc2024.dto.BookDto;
-import com.productdock.rbc2024.dto.EditBookDetailsDto;
+import com.productdock.rbc2024.domain.dto.BookDetailsDto;
+import com.productdock.rbc2024.domain.dto.BookDto;
+import com.productdock.rbc2024.domain.dto.EditBookDetailsDto;
 import com.productdock.rbc2024.exception.BookTitleAlreadyExistsException;
 import com.productdock.rbc2024.exception.EntityNotFoundException;
 import com.productdock.rbc2024.mapper.BookMapper;
-import com.productdock.rbc2024.domain.Book;
 import com.productdock.rbc2024.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +21,7 @@ public class BookService {
 
     private final BookRepository bookRepository;
     private final BookMapper bookMapper;
+    private final ThirdPartyCallService thirdPartyCallService;
 
     public List<BookDetailsDto> getAll() {
         var books = bookRepository.findAll();
@@ -77,12 +77,13 @@ public class BookService {
         bookRepository.delete(book);
     }
 
-    public Integer getNumberOfPages(String title) {
-        var filteredBooks = bookRepository.findByTitleContainingIgnoreCase(title);
-        return filteredBooks.stream()
-                .map(Book::getNumberOfPages)
-                .findFirst()
-                .orElseThrow(() -> new RuntimeException("Book not found"));
+    public void connectToThirdPartyService() {
+        thirdPartyCallService.connectToThirdPartyService();
+        log.info("Sucessfully connected to third-party service.");
+    }
+
+    public List<String> getListOfFilesFromThirdPartyService() {
+        return thirdPartyCallService.getListOfFiles();
     }
 
 }

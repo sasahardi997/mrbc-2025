@@ -1,12 +1,9 @@
 package com.productdock.rbc2024.mapper;
 
 import com.productdock.rbc2024.SpringContextTestBase;
-import com.productdock.rbc2024.domain.Comment;
-import com.productdock.rbc2024.dto.EditBookDetailsDto;
+import com.productdock.rbc2024.domain.dto.EditBookDetailsDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.List;
 
 import static com.productdock.rbc2024.mapper.BookMapperSetUp.createBook;
 import static com.productdock.rbc2024.mapper.BookMapperSetUp.createExpectedBookDetailsDto;

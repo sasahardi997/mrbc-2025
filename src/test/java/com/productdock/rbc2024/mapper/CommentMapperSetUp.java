@@ -1,7 +1,7 @@
 package com.productdock.rbc2024.mapper;
 
-import com.productdock.rbc2024.dto.BookDetailsDto;
-import com.productdock.rbc2024.dto.CommentDto;
+import com.productdock.rbc2024.domain.dto.BookDetailsDto;
+import com.productdock.rbc2024.domain.dto.CommentDto;
 import com.productdock.rbc2024.domain.Book;
 import com.productdock.rbc2024.domain.Comment;
 

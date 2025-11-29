@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import com.productdock.rbc2024.SpringContextTestBase;
 import com.productdock.rbc2024.domain.Book;
-import com.productdock.rbc2024.dto.BookDetailsDto;
-import com.productdock.rbc2024.dto.EditBookDetailsDto;
+import com.productdock.rbc2024.domain.dto.BookDetailsDto;
+import com.productdock.rbc2024.domain.dto.EditBookDetailsDto;
 import com.productdock.rbc2024.exception.BookTitleAlreadyExistsException;
 import com.productdock.rbc2024.exception.EntityNotFoundException;
 import com.productdock.rbc2024.repository.BookRepository;
@@ -16,6 +16,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import org.springframework.boot.test.mock.mockito.MockBean;
+
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 class BookServiceCT extends SpringContextTestBase {
 
@@ -27,6 +32,9 @@ class BookServiceCT extends SpringContextTestBase {
 
     @Autowired
     private CommentRepository commentRepository;
+
+    @MockBean
+    private ThirdPartyCallService thirdPartyCallService;
 
     @BeforeEach
     void setUp() {
@@ -132,5 +140,22 @@ class BookServiceCT extends SpringContextTestBase {
 
         assertEquals(EXPECTED_FILTER_RESULTS, result.size());
         assertEquals(MEDIUM_BOOK_TITLE, result.get(0).title());
+    }
+
+    @Test
+    void simulateConnectionToThirdPartyService() {
+        doNothing().when(thirdPartyCallService).connectToThirdPartyService();
+
+        bookService.connectToThirdPartyService();
+    }
+
+    @Test
+    void simulateGetListOfFilesFromThirdPartyService() {
+        var expectedFiles = List.of("file1.txt", "file2.txt", "file3.txt");
+        when(thirdPartyCallService.getListOfFiles()).thenReturn(expectedFiles);
+
+        var listOfFiles = bookService.getListOfFilesFromThirdPartyService();
+
+        assertEquals(3, listOfFiles.size());
     }
 }

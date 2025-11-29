@@ -1,6 +1,6 @@
 package com.productdock.rbc2024.service;
 
-import com.productdock.rbc2024.dto.CommentDto;
+import com.productdock.rbc2024.domain.dto.CommentDto;
 import com.productdock.rbc2024.exception.EntityNotFoundException;
 import com.productdock.rbc2024.mapper.BookMapper;
 import com.productdock.rbc2024.mapper.CommentMapper;
