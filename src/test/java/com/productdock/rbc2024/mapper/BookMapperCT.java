@@ -9,7 +9,7 @@ import static com.productdock.rbc2024.mapper.BookMapperSetUp.createBook;
 import static com.productdock.rbc2024.mapper.BookMapperSetUp.createExpectedBookDetailsDto;
 import static org.junit.jupiter.api.Assertions.*;
 
-class BookMapperShould extends SpringContextTestBase {
+class BookMapperCT extends SpringContextTestBase {
 
     @Autowired
     private BookMapper bookMapper;

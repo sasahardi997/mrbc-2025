@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import static com.productdock.rbc2024.mapper.CommentMapperSetUp.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class CommentMapperShould extends SpringContextTestBase {
+class CommentMapperCT extends SpringContextTestBase {
 
     @Autowired
     private CommentMapper commentMapper;

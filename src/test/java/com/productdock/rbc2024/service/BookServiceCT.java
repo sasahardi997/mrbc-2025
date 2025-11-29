@@ -19,7 +19,6 @@ import java.util.List;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 class BookServiceCT extends SpringContextTestBase {
